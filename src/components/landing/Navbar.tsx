@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/lokalpay-logo.png";
-import { Menu, X, Building2, Users, Calendar } from "lucide-react";
+import { Menu, X, Building2, Users, Calendar, History, Trophy, Sparkles, LayoutDashboard } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useUserRoles } from "@/hooks/useUserRole";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
+  const { isAdmin } = useUserRoles();
 
   const links = [
     { href: "#probleme", label: t("nav.problem") },
@@ -41,10 +43,24 @@ const Navbar = () => {
             <Link to="/annuaire" className="gap-1"><Users className="h-4 w-4" /> Annuaire</Link>
           </Button>
           <Button variant="ghost" size="sm" asChild>
+            <Link to="/transactions" className="gap-1"><History className="h-4 w-4" /> Transactions</Link>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
+            <Link to="/classement" className="gap-1"><Trophy className="h-4 w-4" /> Classement</Link>
+          </Button>
+          <Button variant="ghost" size="sm" asChild>
             <Link to="/pricing">Tarifs</Link>
           </Button>
           <Button variant="ghost" size="sm" asChild>
             <Link to="/microfinance" className="gap-1"><Building2 className="h-4 w-4" /> Microfinance</Link>
+          </Button>
+          {isAdmin && (
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/admin" className="gap-1"><LayoutDashboard className="h-4 w-4" /> Admin</Link>
+            </Button>
+          )}
+          <Button variant="gold" size="sm" asChild>
+            <Link to="/demo" className="gap-1"><Sparkles className="h-4 w-4" /> Démo</Link>
           </Button>
           <Button variant="ghost" asChild><Link to="/login">{t("nav.login")}</Link></Button>
           <Button variant="hero" asChild><Link to="/register">{t("nav.register")}</Link></Button>

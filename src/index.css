@@ -1,95 +1,100 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
 @layer base {
   :root {
-    --background: 120 20% 99%;
-    --foreground: 160 30% 10%;
+    /* Thème "Sahel" — beige légèrement sombre + vert clair lumineux */
+    --background: 38 28% 78%;
+    --foreground: 150 30% 14%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 160 30% 10%;
+    --card: 40 32% 86%;
+    --card-foreground: 150 30% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 160 30% 10%;
+    --popover: 40 32% 88%;
+    --popover-foreground: 150 30% 14%;
 
-    --primary: 155 70% 35%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 142 60% 48%;
+    --primary-foreground: 150 40% 10%;
 
-    --secondary: 42 90% 55%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 38 45% 60%;
+    --secondary-foreground: 150 40% 12%;
 
-    --muted: 120 10% 95%;
-    --muted-foreground: 160 10% 45%;
+    --muted: 38 22% 70%;
+    --muted-foreground: 150 18% 30%;
 
-    --accent: 42 90% 55%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 142 55% 55%;
+    --accent-foreground: 150 40% 10%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 120 10% 90%;
-    --input: 120 10% 90%;
-    --ring: 155 70% 35%;
+    --border: 38 22% 64%;
+    --input: 38 28% 82%;
+    --ring: 142 60% 48%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
     /* Custom LokalPay tokens */
-    --lokalpay-emerald: 155 70% 35%;
-    --lokalpay-emerald-light: 155 60% 92%;
-    --lokalpay-gold: 42 90% 55%;
-    --lokalpay-gold-light: 42 80% 92%;
-    --lokalpay-dark: 160 30% 10%;
-    --lokalpay-warm: 30 20% 97%;
+    --lokalpay-emerald: 142 65% 50%;
+    --lokalpay-emerald-light: 142 55% 78%;
+    --lokalpay-gold: 38 70% 55%;
+    --lokalpay-gold-light: 38 50% 80%;
+    --lokalpay-terracotta: 18 60% 50%;
+    --lokalpay-dark: 150 30% 14%;
+    --lokalpay-warm: 38 30% 82%;
+    --lokalpay-cream: 40 35% 90%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(155 70% 35%), hsl(155 70% 25%));
-    --gradient-gold: linear-gradient(135deg, hsl(42 90% 55%), hsl(35 90% 50%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(120 20% 98%));
+    --gradient-hero: linear-gradient(135deg, hsl(38 28% 78%) 0%, hsl(142 40% 70%) 50%, hsl(38 35% 75%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(38 70% 55%), hsl(28 65% 50%));
+    --gradient-card: linear-gradient(160deg, hsl(40 35% 88%) 0%, hsl(38 28% 80%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(38 50% 70%), hsl(142 55% 60%));
 
-    --shadow-card: 0 4px 24px -4px hsl(155 70% 35% / 0.08);
-    --shadow-elevated: 0 12px 40px -8px hsl(155 70% 35% / 0.15);
-    --shadow-gold: 0 4px 20px -4px hsl(42 90% 55% / 0.3);
+    --shadow-card: 0 6px 24px -8px hsl(150 30% 14% / 0.18);
+    --shadow-elevated: 0 18px 50px -12px hsl(150 30% 14% / 0.28);
+    --shadow-gold: 0 6px 24px -6px hsl(38 70% 55% / 0.45);
+    --shadow-glow: 0 0 40px hsl(142 65% 50% / 0.35);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 155 70% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 155 60% 92%;
-    --sidebar-accent-foreground: 155 70% 25%;
-    --sidebar-border: 120 10% 90%;
-    --sidebar-ring: 155 70% 35%;
+    --sidebar-background: 38 30% 80%;
+    --sidebar-foreground: 150 30% 18%;
+    --sidebar-primary: 142 60% 48%;
+    --sidebar-primary-foreground: 150 40% 10%;
+    --sidebar-accent: 38 24% 72%;
+    --sidebar-accent-foreground: 150 30% 14%;
+    --sidebar-border: 38 22% 66%;
+    --sidebar-ring: 142 60% 48%;
   }
 
   .dark {
-    --background: 160 30% 6%;
-    --foreground: 120 10% 95%;
-    --card: 160 25% 10%;
-    --card-foreground: 120 10% 95%;
-    --popover: 160 25% 10%;
-    --popover-foreground: 120 10% 95%;
-    --primary: 155 60% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 42 80% 50%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 160 20% 15%;
-    --muted-foreground: 120 10% 60%;
-    --accent: 42 80% 50%;
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 62% 30%;
+    --background: 38 28% 78%;
+    --foreground: 150 30% 14%;
+    --card: 40 32% 86%;
+    --card-foreground: 150 30% 14%;
+    --popover: 40 32% 88%;
+    --popover-foreground: 150 30% 14%;
+    --primary: 142 60% 48%;
+    --primary-foreground: 150 40% 10%;
+    --secondary: 38 45% 60%;
+    --secondary-foreground: 150 40% 12%;
+    --muted: 38 22% 70%;
+    --muted-foreground: 150 18% 30%;
+    --accent: 142 55% 55%;
+    --accent-foreground: 150 40% 10%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 160 20% 18%;
-    --input: 160 20% 18%;
-    --ring: 155 60% 45%;
-    --sidebar-background: 160 30% 8%;
-    --sidebar-foreground: 120 10% 90%;
-    --sidebar-primary: 155 60% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 160 20% 15%;
-    --sidebar-accent-foreground: 120 10% 90%;
-    --sidebar-border: 160 20% 18%;
-    --sidebar-ring: 155 60% 45%;
+    --border: 38 22% 64%;
+    --input: 38 28% 82%;
+    --ring: 142 60% 48%;
+    --sidebar-background: 38 30% 80%;
+    --sidebar-foreground: 150 30% 18%;
+    --sidebar-primary: 142 60% 48%;
+    --sidebar-primary-foreground: 150 40% 10%;
+    --sidebar-accent: 38 24% 72%;
+    --sidebar-accent-foreground: 150 30% 14%;
+    --sidebar-border: 38 22% 66%;
+    --sidebar-ring: 142 60% 48%;
   }
 }
 
@@ -109,49 +114,58 @@
 @layer utilities {
   .text-gradient-hero {
     @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--lokalpay-gold)), hsl(var(--lokalpay-terracotta)));
+  }
+  .text-gradient-emerald {
+    @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(var(--lokalpay-emerald)), hsl(var(--lokalpay-gold)));
   }
   .bg-gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--lokalpay-emerald)), hsl(155 70% 25%));
+    background: var(--gradient-hero);
   }
   .bg-gradient-gold {
-    background: linear-gradient(135deg, hsl(var(--lokalpay-gold)), hsl(35 90% 50%));
+    background: var(--gradient-gold);
+  }
+  .bg-gradient-warm {
+    background: var(--gradient-warm);
+  }
+  .bg-gradient-card {
+    background: var(--gradient-card);
   }
   .bg-warm {
     background-color: hsl(var(--lokalpay-warm));
   }
-  .shadow-card {
-    box-shadow: var(--shadow-card);
+  .bg-deep {
+    background: radial-gradient(ellipse at top, hsl(160 30% 12%) 0%, hsl(160 30% 6%) 70%);
   }
-  .shadow-elevated {
-    box-shadow: var(--shadow-elevated);
-  }
-  .shadow-gold {
-    box-shadow: var(--shadow-gold);
-  }
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
-  }
-  .animate-scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
-  }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-fade-up { animation: fadeUp 0.6s ease-out forwards; }
+  .animate-scale-in { animation: scaleIn 0.4s ease-out forwards; }
   .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-white/20;
-    box-shadow: 0 8px 32px -8px hsl(155 70% 15% / 0.25);
+    @apply bg-card/60 backdrop-blur-xl border border-white/5;
+    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
   }
   .hover-lift {
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated;
   }
-  .text-balance {
-    text-wrap: balance;
+  .icon-chip {
+    @apply inline-flex items-center justify-center rounded-xl bg-primary/10 text-primary p-2.5 ring-1 ring-primary/20;
   }
+  .icon-chip-gold {
+    @apply inline-flex items-center justify-center rounded-xl bg-secondary/15 text-secondary p-2.5 ring-1 ring-secondary/25;
+  }
+  .icon-chip-warm {
+    @apply inline-flex items-center justify-center rounded-xl bg-accent/15 text-accent p-2.5 ring-1 ring-accent/25;
+  }
+  .text-balance { text-wrap: balance; }
   .grain-overlay::after {
     content: '';
     position: absolute; inset: 0;
-    background-image: radial-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px);
+    background-image: radial-gradient(hsl(40 30% 96% / 0.025) 1px, transparent 1px);
     background-size: 3px 3px;
     pointer-events: none;
   }

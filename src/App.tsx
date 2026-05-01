@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
+import RoleProtectedRoute from "@/components/RoleProtectedRoute";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
@@ -19,6 +20,13 @@ import MeetingsPage from "./pages/MeetingsPage";
 import SettingsPage from "./pages/SettingsPage";
 import PricingPage from "./pages/PricingPage";
 import DirectoryPage from "./pages/DirectoryPage";
+import TransactionsPage from "./pages/TransactionsPage";
+import ReceiptPage from "./pages/ReceiptPage";
+import RankingPage from "./pages/RankingPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
+import DemoPage from "./pages/DemoPage";
+import { OfflineIndicator } from "@/components/OfflineIndicator";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +35,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <OfflineIndicator />
       <BrowserRouter>
         <AuthProvider>
           <Routes>
@@ -51,8 +60,15 @@ const App = () => (
             <Route path="/profil/:id" element={<PublicProfilePage />} />
             <Route path="/microfinance" element={<MicrofinancePage />} />
             <Route path="/pricing" element={<PricingPage />} />
+            <Route path="/transactions" element={<TransactionsPage />} />
+            <Route path="/transactions/:lokalpayId" element={<TransactionsPage />} />
+            <Route path="/recu/:id" element={<ReceiptPage />} />
+            <Route path="/classement" element={<RankingPage />} />
+            <Route path="/admin" element={<RoleProtectedRoute requiredPermission="admin.view"><AdminDashboardPage /></RoleProtectedRoute>} />
+            <Route path="/demo" element={<DemoPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <MobileBottomNav />
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>

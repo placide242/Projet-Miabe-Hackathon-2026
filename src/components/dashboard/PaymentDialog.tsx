@@ -12,10 +12,8 @@ import { generateTxHash, COMMISSION_RATES } from "@/lib/plans";
 interface Props { trigger?: React.ReactNode; onPaid?: () => void; }
 
 const OPERATORS = [
-  { name: "Airtel Money", code: "*128#", prefix: ["05", "06"], emoji: "📱" },
-  { name: "MTN MoMo", code: "*133#", prefix: ["06", "05"], emoji: "📲" },
-  { name: "Orange Money", code: "*144#", prefix: ["07"], emoji: "📳" },
-  { name: "M-Pesa", code: "*150#", prefix: ["07"], emoji: "💳" },
+  { name: "Airtel Money", code: "*128#", prefix: ["04", "05"], emoji: "📱" },
+  { name: "MTN MoMo", code: "*133#", prefix: ["06"], emoji: "📲" },
 ];
 
 type Step = "form" | "ussd" | "pin" | "validating" | "blockchain" | "success";

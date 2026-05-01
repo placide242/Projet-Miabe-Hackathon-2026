@@ -17,7 +17,7 @@ const FooterSection = () => {
               Brazzaville & Pointe-Noire, République du Congo.
             </p>
             <div className="flex gap-4 mt-6">
-              {["📱 Airtel Money", "📲 MTN MoMo", "📳 Orange Money"].map((op, i) => (
+              {["📱 Airtel Money", "📲 MTN MoMo"].map((op, i) => (
                 <span key={i} className="text-xs text-background/40 bg-background/10 px-3 py-1.5 rounded-full">{op}</span>
               ))}
             </div>

@@ -3,8 +3,6 @@ import { Building2, Landmark, Handshake, Globe } from "lucide-react";
 const partners = [
   { name: "Airtel Money", type: "Opérateur Mobile", icon: "📱" },
   { name: "MTN MoMo", type: "Opérateur Mobile", icon: "📲" },
-  { name: "Orange Money", type: "Opérateur Mobile", icon: "📳" },
-  { name: "M-Pesa", type: "Opérateur Mobile", icon: "💳" },
 ];
 
 const partnerTypes = [

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { History, ArrowUpRight, ArrowDownRight, CheckCircle, Clock } from "lucide-react";
+import { History, ArrowUpRight, ArrowDownRight, CheckCircle, Clock, Receipt } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 interface Transaction {
   id: string;
@@ -50,9 +51,14 @@ const TransactionList = ({ transactions }: { transactions: Transaction[] }) => {
                 </div>
               </div>
               <div className="text-right flex items-center gap-2">
-                <p className={`font-display font-semibold text-sm ${tx.type === "vente" ? "text-primary" : "text-foreground"}`}>
-                  {tx.type === "vente" ? "+" : "-"}{tx.montant.toLocaleString()} FCFA
-                </p>
+                <div>
+                  <p className={`font-display font-semibold text-sm ${tx.type === "vente" ? "text-primary" : "text-foreground"}`}>
+                    {tx.type === "vente" ? "+" : "-"}{tx.montant.toLocaleString()} FCFA
+                  </p>
+                  <Link to={`/recu/${tx.id}`} className="text-[11px] text-primary hover:underline inline-flex items-center gap-0.5">
+                    <Receipt className="h-3 w-3" /> Reçu
+                  </Link>
+                </div>
                 {tx.synced ? (
                   <CheckCircle className="h-4 w-4 text-primary" />
                 ) : (
@@ -68,3 +74,4 @@ const TransactionList = ({ transactions }: { transactions: Transaction[] }) => {
 };
 
 export default TransactionList;
+

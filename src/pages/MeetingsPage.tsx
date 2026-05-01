@@ -101,7 +101,7 @@ const MeetingsPage = () => {
           <div className="flex items-center gap-3">
             <LanguageSwitcher variant="compact" />
             <Button variant="ghost" size="sm" asChild>
-              <Link to="/dashboard"><ArrowLeft className="h-4 w-4 mr-1" /> Dashboard</Link>
+              <Link to="/dashboard"><ArrowLeft className="h-4 w-4 mr-1" /> Tableau de bord</Link>
             </Button>
           </div>
         </div>

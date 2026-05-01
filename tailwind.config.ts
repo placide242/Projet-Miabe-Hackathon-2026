@@ -66,8 +66,10 @@ export default {
           "emerald-light": "hsl(var(--lokalpay-emerald-light))",
           gold: "hsl(var(--lokalpay-gold))",
           "gold-light": "hsl(var(--lokalpay-gold-light))",
+          terracotta: "hsl(var(--lokalpay-terracotta))",
           dark: "hsl(var(--lokalpay-dark))",
           warm: "hsl(var(--lokalpay-warm))",
+          cream: "hsl(var(--lokalpay-cream))",
         },
       },
       borderRadius: {

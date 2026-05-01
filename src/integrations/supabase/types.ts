@@ -294,6 +294,27 @@ export type Database = {
         }
         Relationships: []
       }
+      role_permissions: {
+        Row: {
+          created_at: string
+          id: string
+          permission: Database["public"]["Enums"]["app_permission"]
+          role: Database["public"]["Enums"]["app_role"]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          permission: Database["public"]["Enums"]["app_permission"]
+          role: Database["public"]["Enums"]["app_role"]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["app_permission"]
+          role?: Database["public"]["Enums"]["app_role"]
+        }
+        Relationships: []
+      }
       subscriptions: {
         Row: {
           amount_fcfa: number
@@ -378,6 +399,27 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -387,9 +429,33 @@ export type Database = {
         Args: { p_user_id: string }
         Returns: number
       }
+      has_permission: {
+        Args: {
+          _permission: Database["public"]["Enums"]["app_permission"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_permission:
+        | "admin.view"
+        | "admin.export_data"
+        | "users.manage"
+        | "roles.manage"
+        | "content.moderate"
+        | "transactions.view_all"
+        | "credits.approve"
+        | "microfinance.manage"
+      app_role: "admin" | "moderator" | "agent" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -516,6 +582,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_permission: [
+        "admin.view",
+        "admin.export_data",
+        "users.manage",
+        "roles.manage",
+        "content.moderate",
+        "transactions.view_all",
+        "credits.approve",
+        "microfinance.manage",
+      ],
+      app_role: ["admin", "moderator", "agent", "user"],
+    },
   },
 } as const

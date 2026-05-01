@@ -6,8 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   Search, CheckCircle, CreditCard, Phone, Download,
-  Building2, BarChart3, Users, ArrowLeft, Star
+  Building2, BarChart3, Users, ArrowLeft, ThumbsUp, ThumbsDown, AlertTriangle
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import logo from "@/assets/lokalpay-logo.png";
 import { supabase } from "@/integrations/supabase/client";
@@ -37,6 +38,21 @@ const MicrofinancePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [scoreMin, setScoreMin] = useState("");
   const [selected, setSelected] = useState<MerchantProfile | null>(null);
+  const [decisions, setDecisions] = useState<Record<string, "approved" | "refused" | "review">>({});
+  const { toast } = useToast();
+
+  const decideCredit = (m: MerchantProfile, action: "approved" | "refused" | "review") => {
+    setDecisions((d) => ({ ...d, [m.id]: action }));
+    const labels = {
+      approved: { title: "✅ Crédit approuvé", desc: `${m.display_name} recevra ${creditRecommended(m).toLocaleString()} FCFA.` },
+      refused: { title: "Crédit refusé", desc: `Score insuffisant pour ${m.display_name}.` },
+      review: { title: "🔍 En analyse manuelle", desc: `Le dossier de ${m.display_name} a été transmis à un analyste.` },
+    } as const;
+    toast(labels[action]);
+  };
+
+  const autoDecision = (score: number): "approved" | "refused" | "review" =>
+    score >= 75 ? "approved" : score >= 55 ? "review" : "refused";
 
   useEffect(() => {
     const fetch = async () => {
@@ -211,8 +227,37 @@ const MicrofinancePage = () => {
                     <CheckCircle className="h-4 w-4" />
                     <span>Score fiable – Historique vérifiable</span>
                   </div>
+                  {(() => {
+                    const auto = autoDecision(selected.score);
+                    const decided = decisions[selected.id];
+                    return (
+                      <div className="rounded-xl border border-border p-3 space-y-2 bg-background/40">
+                        <div className="flex items-center gap-2 text-xs">
+                          {auto === "approved" && <><CheckCircle className="h-4 w-4 text-primary" /><span>Décision automatique : <strong>Approuvé</strong></span></>}
+                          {auto === "review" && <><AlertTriangle className="h-4 w-4 text-lokalpay-gold" /><span>Décision automatique : <strong>Analyse manuelle</strong></span></>}
+                          {auto === "refused" && <><AlertTriangle className="h-4 w-4 text-destructive" /><span>Décision automatique : <strong>Risque élevé</strong></span></>}
+                        </div>
+                        {decided && (
+                          <Badge variant="secondary" className="text-xs">
+                            Statut : {decided === "approved" ? "Approuvé" : decided === "refused" ? "Refusé" : "En analyse"}
+                          </Badge>
+                        )}
+                      </div>
+                    );
+                  })()}
+                  <div className="grid grid-cols-3 gap-2">
+                    <Button variant="hero" size="sm" onClick={() => decideCredit(selected, "approved")}>
+                      <ThumbsUp className="h-4 w-4 mr-1" /> Approuver
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => decideCredit(selected, "review")}>
+                      <AlertTriangle className="h-4 w-4 mr-1" /> Analyse
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => decideCredit(selected, "refused")} className="text-destructive hover:text-destructive">
+                      <ThumbsDown className="h-4 w-4 mr-1" /> Refuser
+                    </Button>
+                  </div>
                   <div className="flex gap-2">
-                    <Button variant="hero" className="flex-1" asChild>
+                    <Button variant="outline" className="flex-1" asChild>
                       <Link to={`/profil/${selected.lokalpay_id}`}>Voir profil</Link>
                     </Button>
                     <Button variant="outline" className="flex-1">
