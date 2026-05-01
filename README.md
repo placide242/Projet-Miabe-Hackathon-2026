@@ -20,6 +20,8 @@ LokalPay est une plateforme innovante de paiement local conçue pour faciliter l
 - **Internationalisation** : i18next
 - **Icônes** : Lucide React
 - **Graphiques** : Recharts
+- **Assité par** : LOVABLE 
+
 
 ## Installation
 
